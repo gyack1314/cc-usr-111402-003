@@ -1,0 +1,69 @@
+{
+  "events": [
+    {
+      "row_id": "e1",
+      "shipment": "s1",
+      "time": 1,
+      "kind": "arrive",
+      "temperature": 3
+    },
+    {
+      "row_id": "e2",
+      "shipment": "s1",
+      "time": 2,
+      "kind": "inspect",
+      "temperature": 4
+    },
+    {
+      "row_id": "e3",
+      "shipment": "s1",
+      "time": 2,
+      "kind": "inspect",
+      "temperature": 9
+    },
+    {
+      "row_id": "e4",
+      "shipment": "s1",
+      "time": 3,
+      "kind": "leave",
+      "temperature": 5
+    }
+  ],
+  "labels": {
+    "A": {
+      "column": "kind",
+      "op": "eq",
+      "value": "arrive"
+    },
+    "B": {
+      "column": "kind",
+      "op": "eq",
+      "value": "inspect"
+    },
+    "C": {
+      "column": "kind",
+      "op": "eq",
+      "value": "leave"
+    }
+  },
+  "pattern": {
+    "seq": [
+      {
+        "label": "A"
+      },
+      {
+        "repeat": {
+          "node": {
+            "label": "B"
+          },
+          "min": 1,
+          "max": null,
+          "greedy": true
+        }
+      },
+      {
+        "label": "C"
+      }
+    ]
+  }
+}
